@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/users', async function(req, res, next) {
+router.get('/getUsers', async function(req, res, next) {
   try {
     const users = await prisma.user.findMany();
     res.json(users);
@@ -31,6 +31,19 @@ router.post('/createUser', async function(req, res, next) {
   }
 });
 
+router.post('/createManyUser', async function(req, res, next) {
+  const data = req.body;
+
+  try {
+    const newUser = await prisma.user.createMany({
+      data: data
+    });
+    res.json(newUser);
+    console.log(`${newUser.count}has been created`);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
 
 
 module.exports = router;

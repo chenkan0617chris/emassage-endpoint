@@ -14,6 +14,9 @@ npx prisma generate
 
 npx prisma migrate dev --name init
 
+# delete all data from database and update schema
+npx prisma db push
+
 # run
 npm run start
 

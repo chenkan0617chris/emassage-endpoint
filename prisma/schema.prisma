@@ -17,4 +17,9 @@ model User {
   id    Int    @id @default(autoincrement())
   name  String
   email String @unique
+  phone String
+  memberLevel String
+  points Int
+  registerDate DateTime @default(now())
+  status String
 }
